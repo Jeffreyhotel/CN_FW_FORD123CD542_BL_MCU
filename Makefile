@@ -46,7 +46,7 @@ TARGET=FORD123_CD542_CY8C4147AZS-S285
 #
 # If APPNAME is edited, ensure to update or regenerate launch
 # configurations for your IDE.
-APPNAME=mtb-example-psoc4-hello-world
+APPNAME=CN_FW_FORD123CD542_BL_MCU
 
 # Name of toolchain to use. Options include:
 #
@@ -137,8 +137,9 @@ LINKER_SCRIPT=
 PREBUILD=
 
 # Custom post-build commands to run.
-POSTBUILD=
-
+POSTBUILD="C:/Users/Admin/ModusToolbox/tools_3.2/gcc/bin/arm-none-eabi-objcopy.exe" \
+			D:/SourceCode/ModusWorkspace/CN_FW_FORD123CD542_BL_MCU/build/FORD123_CD542_CY8C4147AZS-S285/Debug/CN_FW_FORD123CD542_BL_MCU.elf \
+			D:/SourceCode/ModusWorkspace/CN_FW_FORD123CD542_BL_MCU/build/FORD123_CD542_CY8C4147AZS-S285/Debug/CN_FW_FORD123CD542_BL_MCU.bin -O binary --gap-fill=0xff --pad-to=0x20000
 
 ################################################################################
 # Paths
