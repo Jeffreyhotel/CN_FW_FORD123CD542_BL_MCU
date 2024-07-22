@@ -81,6 +81,7 @@ bool NVMDriver_PageWrite( uint32_t *data, const uint32_t address )
     }else{
         bresult = false;
     }
+    return bresult;
 }
 
 bool NVMDriver_RowErase(uint32_t address)
@@ -94,6 +95,7 @@ bool NVMDriver_RowErase(uint32_t address)
     }else{
         bresult = false;
     }
+    return bresult;
 }
 
 // bool NVMDriver_RWWEEPROM_Read( uint32_t *data, uint32_t length, const uint32_t address )

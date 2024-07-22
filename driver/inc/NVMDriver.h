@@ -28,12 +28,10 @@
 
 /*---------------------------- Define Constant -------------------------------*/
 
-void NVMDriver_Initialize(void);
 bool NVMDriver_Read( uint32_t *data, uint32_t length, const uint32_t address );
 bool NVMDriver_PageWrite( uint32_t *data, const uint32_t address );
 bool NVMDriver_RowErase(uint32_t address);
 bool NVMDriver_IsBusy(void);
-void NVMDriver_RegionUnlock(uint32_t address);
 
 #endif /* _EXAMPLE_FILE_NAME_H */
 /* *****************************************************************************

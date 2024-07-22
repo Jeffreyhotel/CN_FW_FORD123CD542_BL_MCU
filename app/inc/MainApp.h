@@ -7,8 +7,8 @@
 #define STATE_RETRYCHECK    0x02U
 
 /* FUNCTION:  Define MCU ASM ... for BOOTLOADER VECTOR JUMP */
-#define     ADDR_APP_A_START      0x00001000U
-#define     ADDR_APP_B_START      0x00010000U
+#define     ADDR_APP_A_START      0x00003000U
+#define     ADDR_APP_B_START      0x00011000U
 #define		ASM_NOP()			__NOP()
 #define		ASM_SYS_RESET()	        (__NVIC_SystemReset())
 #define		ASM_SET_MSP(u32Msp)	(__set_MSP(u32Msp))
