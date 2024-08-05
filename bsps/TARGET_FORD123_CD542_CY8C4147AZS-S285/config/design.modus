@@ -3,6 +3,16 @@
     <Devices>
         <Device mpn="CY8C4147AZS-S285">
             <BlockConfig>
+                <Block location="scb[1]">
+                    <Aliases>
+                        <Alias value="SCB_I2C1M"/>
+                    </Aliases>
+                </Block>
+                <Block location="wco[0]">
+                    <Aliases>
+                        <Alias value="RTC_OSC"/>
+                    </Aliases>
+                </Block>
                 <Personality template="m0s8dap" version="1.0">
                     <Block location="cpuss[0].dap[0]" locked="true"/>
                     <Parameters>
@@ -16,7 +26,7 @@
                         </Aliases>
                     </Block>
                     <Parameters>
-                        <Param id="DriveModes" value="CY_GPIO_DM_PULLDOWN"/>
+                        <Param id="DriveModes" value="CY_GPIO_DM_HIGHZ"/>
                         <Param id="inFlash" value="true"/>
                         <Param id="initialState" value="0"/>
                         <Param id="isrTrigger" value="CY_GPIO_INTR_DISABLE"/>
@@ -32,7 +42,7 @@
                         </Aliases>
                     </Block>
                     <Parameters>
-                        <Param id="DriveModes" value="CY_GPIO_DM_PULLDOWN"/>
+                        <Param id="DriveModes" value="CY_GPIO_DM_HIGHZ"/>
                         <Param id="inFlash" value="true"/>
                         <Param id="initialState" value="0"/>
                         <Param id="isrTrigger" value="CY_GPIO_INTR_DISABLE"/>
@@ -48,7 +58,7 @@
                         </Aliases>
                     </Block>
                     <Parameters>
-                        <Param id="DriveModes" value="CY_GPIO_DM_PULLDOWN"/>
+                        <Param id="DriveModes" value="CY_GPIO_DM_HIGHZ"/>
                         <Param id="inFlash" value="true"/>
                         <Param id="initialState" value="0"/>
                         <Param id="isrTrigger" value="CY_GPIO_INTR_DISABLE"/>
@@ -64,7 +74,7 @@
                         </Aliases>
                     </Block>
                     <Parameters>
-                        <Param id="DriveModes" value="CY_GPIO_DM_PULLDOWN"/>
+                        <Param id="DriveModes" value="CY_GPIO_DM_HIGHZ"/>
                         <Param id="inFlash" value="true"/>
                         <Param id="initialState" value="0"/>
                         <Param id="isrTrigger" value="CY_GPIO_INTR_DISABLE"/>
@@ -108,13 +118,13 @@
                 <Personality template="m0s8pin" version="2.0">
                     <Block location="ioss[0].port[0].pin[6]" locked="true">
                         <Aliases>
-                            <Alias value="P1V2_PG"/>
+                            <Alias value="P1V2_EN"/>
                         </Aliases>
                     </Block>
                     <Parameters>
-                        <Param id="DriveModes" value="CY_GPIO_DM_HIGHZ"/>
+                        <Param id="DriveModes" value="CY_GPIO_DM_STRONG_IN_OFF"/>
                         <Param id="inFlash" value="true"/>
-                        <Param id="initialState" value="1"/>
+                        <Param id="initialState" value="0"/>
                         <Param id="isrTrigger" value="CY_GPIO_INTR_DISABLE"/>
                         <Param id="portLevelConfig" value="false"/>
                         <Param id="slewRate" value="CY_GPIO_SLEW_FAST"/>
@@ -124,11 +134,11 @@
                 <Personality template="m0s8pin" version="2.0">
                     <Block location="ioss[0].port[0].pin[7]" locked="true">
                         <Aliases>
-                            <Alias value="P1V2_EN"/>
+                            <Alias value="P1V2_PG"/>
                         </Aliases>
                     </Block>
                     <Parameters>
-                        <Param id="DriveModes" value="CY_GPIO_DM_PULLDOWN_IN_OFF"/>
+                        <Param id="DriveModes" value="CY_GPIO_DM_STRONG_IN_OFF"/>
                         <Param id="inFlash" value="true"/>
                         <Param id="initialState" value="0"/>
                         <Param id="isrTrigger" value="CY_GPIO_INTR_DISABLE"/>
@@ -140,11 +150,11 @@
                 <Personality template="m0s8pin" version="2.0">
                     <Block location="ioss[0].port[1].pin[0]" locked="true">
                         <Aliases>
-                            <Alias value="BIAS_EN"/>
+                            <Alias value="BIAS_FAULT"/>
                         </Aliases>
                     </Block>
                     <Parameters>
-                        <Param id="DriveModes" value="CY_GPIO_DM_PULLDOWN_IN_OFF"/>
+                        <Param id="DriveModes" value="CY_GPIO_DM_HIGHZ"/>
                         <Param id="inFlash" value="true"/>
                         <Param id="initialState" value="0"/>
                         <Param id="isrTrigger" value="CY_GPIO_INTR_DISABLE"/>
@@ -156,13 +166,13 @@
                 <Personality template="m0s8pin" version="2.0">
                     <Block location="ioss[0].port[1].pin[1]" locked="true">
                         <Aliases>
-                            <Alias value="BIAS_FAULT"/>
+                            <Alias value="BIAS_EN"/>
                         </Aliases>
                     </Block>
                     <Parameters>
                         <Param id="DriveModes" value="CY_GPIO_DM_HIGHZ"/>
                         <Param id="inFlash" value="true"/>
-                        <Param id="initialState" value="1"/>
+                        <Param id="initialState" value="0"/>
                         <Param id="isrTrigger" value="CY_GPIO_INTR_DISABLE"/>
                         <Param id="portLevelConfig" value="false"/>
                         <Param id="slewRate" value="CY_GPIO_SLEW_FAST"/>
@@ -284,7 +294,7 @@
                         </Aliases>
                     </Block>
                     <Parameters>
-                        <Param id="DriveModes" value="CY_GPIO_DM_PULLDOWN_IN_OFF"/>
+                        <Param id="DriveModes" value="CY_GPIO_DM_STRONG_IN_OFF"/>
                         <Param id="inFlash" value="true"/>
                         <Param id="initialState" value="0"/>
                         <Param id="isrTrigger" value="CY_GPIO_INTR_DISABLE"/>
@@ -348,9 +358,9 @@
                         </Aliases>
                     </Block>
                     <Parameters>
-                        <Param id="DriveModes" value="CY_GPIO_DM_OD_DRIVESLOW"/>
+                        <Param id="DriveModes" value="CY_GPIO_DM_STRONG_IN_OFF"/>
                         <Param id="inFlash" value="true"/>
-                        <Param id="initialState" value="1"/>
+                        <Param id="initialState" value="0"/>
                         <Param id="isrTrigger" value="CY_GPIO_INTR_DISABLE"/>
                         <Param id="portLevelConfig" value="false"/>
                         <Param id="slewRate" value="CY_GPIO_SLEW_FAST"/>
@@ -364,9 +374,9 @@
                         </Aliases>
                     </Block>
                     <Parameters>
-                        <Param id="DriveModes" value="CY_GPIO_DM_OD_DRIVESLOW"/>
+                        <Param id="DriveModes" value="CY_GPIO_DM_STRONG"/>
                         <Param id="inFlash" value="true"/>
-                        <Param id="initialState" value="1"/>
+                        <Param id="initialState" value="0"/>
                         <Param id="isrTrigger" value="CY_GPIO_INTR_DISABLE"/>
                         <Param id="portLevelConfig" value="false"/>
                         <Param id="slewRate" value="CY_GPIO_SLEW_FAST"/>
@@ -408,11 +418,11 @@
                 <Personality template="m0s8pin" version="2.0">
                     <Block location="ioss[0].port[3].pin[4]" locked="true">
                         <Aliases>
-                            <Alias value="TOUCH_RESX"/>
+                            <Alias value="FPCACHK_LOUT"/>
                         </Aliases>
                     </Block>
                     <Parameters>
-                        <Param id="DriveModes" value="CY_GPIO_DM_PULLDOWN_IN_OFF"/>
+                        <Param id="DriveModes" value="CY_GPIO_DM_STRONG_IN_OFF"/>
                         <Param id="inFlash" value="true"/>
                         <Param id="initialState" value="0"/>
                         <Param id="isrTrigger" value="CY_GPIO_INTR_DISABLE"/>
@@ -424,11 +434,27 @@
                 <Personality template="m0s8pin" version="2.0">
                     <Block location="ioss[0].port[3].pin[5]" locked="true">
                         <Aliases>
-                            <Alias value="TOUCH_INT"/>
+                            <Alias value="FPCACHK_LIN"/>
                         </Aliases>
                     </Block>
                     <Parameters>
                         <Param id="DriveModes" value="CY_GPIO_DM_HIGHZ"/>
+                        <Param id="inFlash" value="true"/>
+                        <Param id="initialState" value="0"/>
+                        <Param id="isrTrigger" value="CY_GPIO_INTR_DISABLE"/>
+                        <Param id="portLevelConfig" value="false"/>
+                        <Param id="slewRate" value="CY_GPIO_SLEW_FAST"/>
+                        <Param id="vtrip" value="CY_GPIO_VTRIP_CMOS"/>
+                    </Parameters>
+                </Personality>
+                <Personality template="m0s8pin" version="2.0">
+                    <Block location="ioss[0].port[3].pin[6]" locked="true">
+                        <Aliases>
+                            <Alias value="DDIC_WP"/>
+                        </Aliases>
+                    </Block>
+                    <Parameters>
+                        <Param id="DriveModes" value="CY_GPIO_DM_PULLUP_IN_OFF"/>
                         <Param id="inFlash" value="true"/>
                         <Param id="initialState" value="1"/>
                         <Param id="isrTrigger" value="CY_GPIO_INTR_DISABLE"/>
@@ -504,22 +530,6 @@
                 <Personality template="m0s8pin" version="2.0">
                     <Block location="ioss[0].port[4].pin[4]" locked="true">
                         <Aliases>
-                            <Alias value="P3V3_EN"/>
-                        </Aliases>
-                    </Block>
-                    <Parameters>
-                        <Param id="DriveModes" value="CY_GPIO_DM_PULLDOWN_IN_OFF"/>
-                        <Param id="inFlash" value="true"/>
-                        <Param id="initialState" value="0"/>
-                        <Param id="isrTrigger" value="CY_GPIO_INTR_DISABLE"/>
-                        <Param id="portLevelConfig" value="false"/>
-                        <Param id="slewRate" value="CY_GPIO_SLEW_FAST"/>
-                        <Param id="vtrip" value="CY_GPIO_VTRIP_CMOS"/>
-                    </Parameters>
-                </Personality>
-                <Personality template="m0s8pin" version="2.0">
-                    <Block location="ioss[0].port[4].pin[5]" locked="true">
-                        <Aliases>
                             <Alias value="P3V3_PG"/>
                         </Aliases>
                     </Block>
@@ -534,13 +544,29 @@
                     </Parameters>
                 </Personality>
                 <Personality template="m0s8pin" version="2.0">
+                    <Block location="ioss[0].port[4].pin[5]" locked="true">
+                        <Aliases>
+                            <Alias value="P3V3_EN"/>
+                        </Aliases>
+                    </Block>
+                    <Parameters>
+                        <Param id="DriveModes" value="CY_GPIO_DM_STRONG_IN_OFF"/>
+                        <Param id="inFlash" value="true"/>
+                        <Param id="initialState" value="0"/>
+                        <Param id="isrTrigger" value="CY_GPIO_INTR_DISABLE"/>
+                        <Param id="portLevelConfig" value="false"/>
+                        <Param id="slewRate" value="CY_GPIO_SLEW_FAST"/>
+                        <Param id="vtrip" value="CY_GPIO_VTRIP_CMOS"/>
+                    </Parameters>
+                </Personality>
+                <Personality template="m0s8pin" version="2.0">
                     <Block location="ioss[0].port[4].pin[6]" locked="true">
                         <Aliases>
                             <Alias value="VBATT_EN"/>
                         </Aliases>
                     </Block>
                     <Parameters>
-                        <Param id="DriveModes" value="CY_GPIO_DM_PULLDOWN_IN_OFF"/>
+                        <Param id="DriveModes" value="CY_GPIO_DM_STRONG_IN_OFF"/>
                         <Param id="inFlash" value="true"/>
                         <Param id="initialState" value="0"/>
                         <Param id="isrTrigger" value="CY_GPIO_INTR_DISABLE"/>
@@ -556,7 +582,7 @@
                         </Aliases>
                     </Block>
                     <Parameters>
-                        <Param id="DriveModes" value="CY_GPIO_DM_PULLDOWN_IN_OFF"/>
+                        <Param id="DriveModes" value="CY_GPIO_DM_STRONG_IN_OFF"/>
                         <Param id="inFlash" value="true"/>
                         <Param id="initialState" value="0"/>
                         <Param id="isrTrigger" value="CY_GPIO_INTR_DISABLE"/>
@@ -572,7 +598,7 @@
                         </Aliases>
                     </Block>
                     <Parameters>
-                        <Param id="DriveModes" value="CY_GPIO_DM_PULLDOWN_IN_OFF"/>
+                        <Param id="DriveModes" value="CY_GPIO_DM_HIGHZ"/>
                         <Param id="inFlash" value="true"/>
                         <Param id="initialState" value="0"/>
                         <Param id="isrTrigger" value="CY_GPIO_INTR_DISABLE"/>
@@ -588,7 +614,7 @@
                         </Aliases>
                     </Block>
                     <Parameters>
-                        <Param id="DriveModes" value="CY_GPIO_DM_STRONG_IN_OFF"/>
+                        <Param id="DriveModes" value="CY_GPIO_DM_PULLUP_IN_OFF"/>
                         <Param id="inFlash" value="true"/>
                         <Param id="initialState" value="1"/>
                         <Param id="isrTrigger" value="CY_GPIO_INTR_DISABLE"/>
@@ -604,7 +630,7 @@
                         </Aliases>
                     </Block>
                     <Parameters>
-                        <Param id="DriveModes" value="CY_GPIO_DM_PULLDOWN_IN_OFF"/>
+                        <Param id="DriveModes" value="CY_GPIO_DM_STRONG_IN_OFF"/>
                         <Param id="inFlash" value="true"/>
                         <Param id="initialState" value="0"/>
                         <Param id="isrTrigger" value="CY_GPIO_INTR_DISABLE"/>
@@ -622,7 +648,7 @@
                     <Parameters>
                         <Param id="DriveModes" value="CY_GPIO_DM_STRONG_IN_OFF"/>
                         <Param id="inFlash" value="true"/>
-                        <Param id="initialState" value="1"/>
+                        <Param id="initialState" value="0"/>
                         <Param id="isrTrigger" value="CY_GPIO_INTR_DISABLE"/>
                         <Param id="portLevelConfig" value="false"/>
                         <Param id="slewRate" value="CY_GPIO_SLEW_FAST"/>
@@ -652,7 +678,7 @@
                         </Aliases>
                     </Block>
                     <Parameters>
-                        <Param id="DriveModes" value="CY_GPIO_DM_PULLDOWN_IN_OFF"/>
+                        <Param id="DriveModes" value="CY_GPIO_DM_STRONG_IN_OFF"/>
                         <Param id="inFlash" value="true"/>
                         <Param id="initialState" value="0"/>
                         <Param id="isrTrigger" value="CY_GPIO_INTR_DISABLE"/>
@@ -668,7 +694,7 @@
                         </Aliases>
                     </Block>
                     <Parameters>
-                        <Param id="DriveModes" value="CY_GPIO_DM_PULLDOWN_IN_OFF"/>
+                        <Param id="DriveModes" value="CY_GPIO_DM_STRONG_IN_OFF"/>
                         <Param id="inFlash" value="true"/>
                         <Param id="initialState" value="0"/>
                         <Param id="isrTrigger" value="CY_GPIO_INTR_DISABLE"/>
@@ -718,7 +744,7 @@
                     <Parameters>
                         <Param id="DriveModes" value="CY_GPIO_DM_HIGHZ"/>
                         <Param id="inFlash" value="true"/>
-                        <Param id="initialState" value="0"/>
+                        <Param id="initialState" value="1"/>
                         <Param id="isrTrigger" value="CY_GPIO_INTR_DISABLE"/>
                         <Param id="portLevelConfig" value="false"/>
                         <Param id="slewRate" value="CY_GPIO_SLEW_FAST"/>
@@ -1046,32 +1072,6 @@
                     </Parameters>
                 </Personality>
                 <Personality template="m0s8i2c" version="1.0">
-                    <Block location="scb[1]" locked="true">
-                        <Aliases>
-                            <Alias value="SCB_I2C1M"/>
-                        </Aliases>
-                    </Block>
-                    <Parameters>
-                        <Param id="AcceptAddress" value="false"/>
-                        <Param id="AcceptGeneralCall" value="false"/>
-                        <Param id="CallbackDS" value="false"/>
-                        <Param id="CallbackDSName" value="DsClockConfigCallback"/>
-                        <Param id="DataRate" value="400"/>
-                        <Param id="EnableRxFifo" value="true"/>
-                        <Param id="EnableTxFifo" value="true"/>
-                        <Param id="EnableWakeup" value="false"/>
-                        <Param id="ManualDataRateCtrl" value="false"/>
-                        <Param id="ManualDigitalFilter" value="true"/>
-                        <Param id="ManualHighPhaseDutyCycle" value="9"/>
-                        <Param id="ManualLowPhaseDutyCycle" value="16"/>
-                        <Param id="ModeUser" value="CY_SCB_I2C_MASTER"/>
-                        <Param id="RxAddressFifoDelay" value="6"/>
-                        <Param id="SlaveAddress" value="16"/>
-                        <Param id="SlaveAddressMask" value="254"/>
-                        <Param id="inFlash" value="true"/>
-                    </Parameters>
-                </Personality>
-                <Personality template="m0s8i2c" version="1.0">
                     <Block location="scb[2]" locked="true">
                         <Aliases>
                             <Alias value="SCB_I2C2S"/>
@@ -1305,17 +1305,6 @@
                         <Param id="inFlash" value="true"/>
                     </Parameters>
                 </Personality>
-                <Personality template="m0s8wco" version="2.0">
-                    <Block location="wco[0]" locked="true">
-                        <Aliases>
-                            <Alias value="RTC_OSC"/>
-                        </Aliases>
-                    </Block>
-                    <Parameters>
-                        <Param id="accuracyPpm" value="150"/>
-                        <Param id="clockPort" value="CY_SYSCLK_WCO_NOT_BYPASSED"/>
-                    </Parameters>
-                </Personality>
             </BlockConfig>
             <Netlist>
                 <Net>
@@ -1327,28 +1316,12 @@
                     <Port name="ioss[0].port[3].pin[2].digital_inout[0]"/>
                 </Net>
                 <Net>
-                    <Port name="ioss[0].port[0].pin[4].analog[0]"/>
-                    <Port name="wco[0].wco_in[0]"/>
-                </Net>
-                <Net>
-                    <Port name="ioss[0].port[0].pin[5].analog[0]"/>
-                    <Port name="wco[0].wco_out[0]"/>
-                </Net>
-                <Net>
                     <Port name="ioss[0].port[1].pin[2].digital_inout[0]"/>
                     <Port name="scb[2].i2c_scl[0]"/>
                 </Net>
                 <Net>
                     <Port name="ioss[0].port[1].pin[3].digital_inout[0]"/>
                     <Port name="scb[2].i2c_sda[0]"/>
-                </Net>
-                <Net>
-                    <Port name="ioss[0].port[3].pin[0].digital_inout[0]"/>
-                    <Port name="scb[1].i2c_scl[0]"/>
-                </Net>
-                <Net>
-                    <Port name="ioss[0].port[3].pin[1].digital_inout[0]"/>
-                    <Port name="scb[1].i2c_sda[0]"/>
                 </Net>
                 <Net>
                     <Port name="ioss[0].port[4].pin[0].digital_inout[0]"/>
@@ -1413,10 +1386,6 @@
                 <Net>
                     <Port name="peri[0].div_16[6].clk[0]"/>
                     <Port name="tcpwm[0].cnt[0].clock[0]"/>
-                </Net>
-                <Net>
-                    <Port name="peri[0].div_16[7].clk[0]"/>
-                    <Port name="scb[1].clock[0]"/>
                 </Net>
                 <Net>
                     <Port name="peri[0].div_16[8].clk[0]"/>
