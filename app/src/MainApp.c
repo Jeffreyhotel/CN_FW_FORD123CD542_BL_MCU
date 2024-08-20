@@ -92,7 +92,7 @@ uint8_t MainApp_Jump_Mode(uint8_t u8Nothing)
         sprintf((char *)u8TxBuffer,"Start JUMP ...\r\n");
         UartDriver_TxWriteString(u8TxBuffer);
     }else{/*DO NOTHING*/}
-    while(!NVMDriver_Read(u32data,16U,0x00000FF0U));
+    while(!NVMDriver_Read(u32data,16U,0x0001F000U));
 
     if ((u32data[0] & 0x000000FF) == 0x0000000A){
         UartDriver_TxWriteString((uint8_t *)"Flash Jump A\r\n");
