@@ -35,7 +35,24 @@
 static uint8_t gu8MainStatus = STATE_BOOT;
 static uint8_t UART_DEBUG = 0x01;
 static uint8_t RETRY_FLAG = 0x00;
-static uint8_t u8TxBuffer[60] = {0};
+static uint8_t u8TxBuffer[40] = {0};
+
+#if 0
+static void FlashApp_WriteRowFlash(uint8_t data[], const uint32_t address, uint8_t length)
+{
+    uint8_t dataStr[256] = {0};
+    (void)memcpy((void *)dataStr, (void *) FLASH_ROW_ADDRESS( address ), SIZE_ROW);
+    uint8_t start_addr = (uint8_t)(address & 0xFF);
+    for(uint16_t addr = 0U; addr < length; addr ++){
+        if((start_addr + addr) <= 0xFF){
+            dataStr[start_addr + addr] = data[addr];
+        }else{
+            /* error write*/
+        }
+    }
+    NVMDriver_PageWrite(dataStr,FLASH_ROW_ADDRESS(address));
+}
+#endif
 
 /*  Function: MainApp_Boot_Mode
 **  Callfrom: Main_Flow state machine
@@ -46,6 +63,8 @@ uint8_t MainApp_Boot_Mode(uint8_t u8Nothing)
 {
     uint8_t u8Return;
     uint32_t result = 0U;
+    uint32_t u32data[1] = {0};
+    uint8_t u8data[1] = {0};
     /* Initialize the device and board peripherals */
     result = cybsp_init();
     (void)Cy_GPIO_Pin_FastInit(GPIO_PRT0, 4U, CY_GPIO_DM_ANALOG, 0x00U, HSIOM_SEL_GPIO);
@@ -67,9 +86,20 @@ uint8_t MainApp_Boot_Mode(uint8_t u8Nothing)
 
     /* Enable global interrupts */
     __enable_irq();
-
+    while(!NVMDriver_Read(u32data,16U,0x00002FFCU));
+    if (((u32data[0]>>24) & 0x000000FF) != (uint32_t)FW_BL_VERSION){
+        u8data[0] = FW_BL_VERSION;
+        uint8_t dataStr[256] = {0xFFU};
+        dataStr[255] = u8data[0];
+        NVMDriver_PageWrite(dataStr,FLASH_ROW_ADDRESS(FW_BL_VER_ADDR));
+        #if 0
+        FlashApp_WriteRowFlash(&u8data[0],0x00002FFFU,1);
+        #endif
+        sprintf((char *)u8TxBuffer,"Flash BL Version 0x%02X\r\n",u8data[0]);
+        UartDriver_TxWriteString(u8TxBuffer);
+    }
     if (UART_DEBUG == 0x01){
-        sprintf((char *)u8TxBuffer,"BOOT-Loader FINISHED\r\n");
+        sprintf((char *)u8TxBuffer,"BOOT-Loader FINISHED, BL Ver.%02X\r\n",FW_BL_VERSION);
         UartDriver_TxWriteString(u8TxBuffer);
         //UartDriver_TxWriteString((uint8_t *)"BOOT RETRY\r\n");
     }else{/*DO NOTHING*/}

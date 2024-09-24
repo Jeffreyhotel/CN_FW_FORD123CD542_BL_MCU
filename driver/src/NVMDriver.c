@@ -48,10 +48,6 @@
 // *****************************************************************************
 // *****************************************************************************
 
-#include "main.h"
-#include <stdint.h>
-#include <stddef.h>                     // Defines NULL
-#include <stdbool.h>                    // Defines true
 #include "driver/inc/NVMDriver.h"
 
 // *****************************************************************************
@@ -60,10 +56,7 @@
 // *****************************************************************************
 // *****************************************************************************
 
-// void NVMDriver_Initialize(void)
-// {
-//     NVMCTRL_Initialize();
-// }
+static uint8_t u8FlashCache[SIZE_ROW];
 
 bool NVMDriver_Read( uint32_t *data, uint32_t length, const uint32_t address )
 {
@@ -72,16 +65,14 @@ bool NVMDriver_Read( uint32_t *data, uint32_t length, const uint32_t address )
     return true;
 }
 
-bool NVMDriver_PageWrite( uint32_t *data, const uint32_t address )
+cy_en_flashdrv_status_t NVMDriver_PageWrite( uint8_t *u8data, const uint32_t u32address)
 {
-    bool bresult = true;
-    if( Cy_Flash_WriteRow(address,data) == CY_FLASH_DRV_SUCCESS)
-    {
-        bresult = true;
-    }else{
-        bresult = false;
-    }
-    return bresult;
+    cy_en_flashdrv_status_t tResult;
+    (void)memcpy((void *)u8FlashCache, (void *) FLASH_ROW_ADDRESS( u32address ), SIZE_ROW);
+    (void)memcpy(u8FlashCache, u8data, SIZE_ROW);
+    
+    tResult = Cy_Flash_WriteRow(u32address, (uint32_t *)u8FlashCache);
+    return tResult;
 }
 
 bool NVMDriver_RowErase(uint32_t address)
@@ -98,25 +89,12 @@ bool NVMDriver_RowErase(uint32_t address)
     return bresult;
 }
 
-// bool NVMDriver_RWWEEPROM_Read( uint32_t *data, uint32_t length, const uint32_t address )
-// {
-//     return NVMCTRL_RWWEEPROM_Read(data,address,length);
-// }
-
-// bool NVMDriver_RWWEEPROM_PageWrite ( uint32_t *data, const uint32_t address )
-// {
-//     return NVMCTRL_RWWEEPROM_PageWrite (data, address);
-// }
-
-// bool NVMDriver_RWWEEPROM_RowErase( uint32_t address )
-// {
-//     return NVMCTRL_RWWEEPROM_RowErase(address );
-// }
-
+#if 0
 bool NVMDriver_IsBusy(void)
 {
     bool bresult = true;
-    if (Cy_Flash_IsOperationComplete() == CY_FLASH_DRV_PROGRESS_NO_ERROR )
+    /* Need to check the warning information*/
+    if (Cy_Flash_IsOperationComplete() == (int)CY_FLASH_DRV_PROGRESS_NO_ERROR )
     {
         bresult = true;
     }else{
@@ -124,12 +102,7 @@ bool NVMDriver_IsBusy(void)
     }
     return bresult;
 }
-
-// void NVMDriver_RegionUnlock(uint32_t address)
-// {
-//     NVMCTRL_RegionUnlock(address);
-// }
-
+#endif
 /* *****************************************************************************
  End of File
  */
