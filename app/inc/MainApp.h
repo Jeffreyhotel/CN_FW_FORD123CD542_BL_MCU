@@ -6,7 +6,7 @@
 #define STATE_JUMP          0x01U
 #define STATE_RETRYCHECK    0x02U
 
-#define FW_BL_VERSION   0x01U
+#define FW_BL_VERSION   0x02U
 #define FW_BL_VER_ADDR  0x00002FFFU
 
 /* FUNCTION:  Define MCU ASM ... for BOOTLOADER VECTOR JUMP */
